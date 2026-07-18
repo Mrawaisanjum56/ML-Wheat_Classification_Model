@@ -1,0 +1,19 @@
+Wheat Dataset Split Statistics
+========================================
+
+TRAIN (660 total):
+  good    : 220
+  average : 220
+  bad     : 220
+
+VAL (141 total):
+  good    : 47
+  average : 47
+  bad     : 47
+
+TEST (144 total):
+  good    : 48
+  average : 48
+  bad     : 48
+
+Note: 'train' may include oversampled duplicates.
