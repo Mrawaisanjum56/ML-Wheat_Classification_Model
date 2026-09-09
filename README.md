@@ -43,7 +43,7 @@ This project uses computer vision + machine learning to automate wheat quality a
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python  
+- **Language:** Python, FastApi, HTML, CSS, Javascript  
 - **Libraries:** (NumPy, Pandas, scikit-learn, TensorFlow, matplotlib)  
 - **Environment:** Local Python environment  
 - **Version Control:** Git + GitHub  
@@ -54,16 +54,78 @@ This project uses computer vision + machine learning to automate wheat quality a
 
 ```text
 ML-Wheat_Classification_Model/
-├── raw_data/                               # Dataset files
-├── prepare_dataset.py
-├── wheat_classifier_train.py               # Model training script
-├── wheat_inference.py                      # Prediction script
+├── frontend/
+│   ├── index.html
+│   ├── pages/
+│   └── assets/
+│       ├── css/
+│       └── js/
+├── backend/
+│   ├── app/
+│   │   ├── api/v1/endpoints/
+│   │   ├── core/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── ml/artifacts/model.pkl
+│   ├── requirements.txt
+│   └── .env.example
+├── scripts/
+├── notebooks/
+├── data/
 └── README.md                               # Project documentation
 ```
 
 ---
 
 ## 🚀 Quick Start
+
+
+> Prerequisite: Python 3.10+ installed
+
+Run this from the project root:
+
+```bash
+python scripts/run.py
+```
+
+This command will:
+1. Create virtual environment (if missing)
+2. Install backend dependencies
+3. Start FastAPI backend at `http://127.0.0.1:8000`
+4. Start frontend static server at `http://127.0.0.1:5500`
+
+---
+
+## 🔌 API Endpoints
+
+Base URL: `http://127.0.0.1:8000/api/v1`
+
+- `GET /health` → health status  
+- `GET /model/info` → model metadata  
+- `POST /predict` → single image prediction  
+- `POST /predict/batch` → batch image prediction  
+- `GET /history?limit=20` → recent predictions  
+- `DELETE /history` → clear history  
+
+Swagger docs:
+- `http://127.0.0.1:8000/docs`
+
+---
+
+## 🧠 Expected Prediction Response
+
+```json
+{
+  "predicted_class": "Good",
+  "confidence": 0.91,
+  "probabilities": {
+    "Good": 0.91,
+    "Average": 0.06,
+    "Bad": 0.03
+  }
+}
+```
+
 
 ### 1) Clone the repository
 ```bash

@@ -1,6 +1,155 @@
-<input type="file" id="imageInput" accept="image/*" multiple />
-<button id="predictBtn" class="btn btn-primary btn-full">Predict Quality</button>
-<button id="batchPredictBtn" class="btn btn-ghost btn-full">Batch Predict</button>
-<div id="batchResults"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WheatVision AI | Wheat Quality Classifier</title>
+  <meta name="description" content="AI-powered wheat grain quality classification web app." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="bg-blur bg-blur-1"></div>
+  <div class="bg-blur bg-blur-2"></div>
 
-<script type="module" src="assets/js/app.js"></script>
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="index.html" class="logo">
+        <span class="logo-badge">🌾</span>
+        <div>
+          <h1>WheatVision AI</h1>
+          <p>Quality Classification System</p>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/history.html">History</a>
+        <a href="pages/about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-left reveal">
+        <span class="tag">Machine Learning Powered</span>
+        <h2>Analyze Wheat Grain Quality in Seconds</h2>
+        <p>
+          Upload wheat grain images and classify them into
+          <strong>Good</strong>, <strong>Average</strong>, or <strong>Bad</strong>
+          with confidence distribution.
+        </p>
+        <div class="hero-actions">
+          <a href="#predict-section" class="btn btn-primary">Start Prediction</a>
+          <a href="pages/about.html" class="btn btn-ghost">Learn More</a>
+        </div>
+      </div>
+
+      <div class="hero-right reveal delay-1">
+        <div class="stat-card floating">
+          <h3>Model Status</h3>
+          <p class="online-dot"><span></span> Online</p>
+          <small id="healthStatus">API ready for predictions</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="predict-section" class="predict-section container reveal delay-2">
+      <div class="card">
+        <h3>Upload Wheat Image</h3>
+        <p class="muted">Supported: JPG, PNG, WEBP (max ~5MB/image)</p>
+
+        <label for="imageInput" class="upload-box">
+          <input type="file" id="imageInput" accept="image/*" multiple />
+          <div class="upload-inner">
+            <div class="upload-icon">📤</div>
+            <p><strong>Click to upload</strong> or drag & drop</p>
+            <small id="fileName">No files selected</small>
+          </div>
+        </label>
+
+        <div class="preview-wrap" id="previewWrap">
+          <img id="previewImage" alt="Selected image preview" />
+        </div>
+
+        <div class="actions-grid">
+          <button id="predictBtn" class="btn btn-primary btn-full">Predict Quality</button>
+          <button id="batchPredictBtn" class="btn btn-ghost btn-full">Batch Predict</button>
+        </div>
+      </div>
+
+      <div class="card result-card">
+        <h3>Prediction Result</h3>
+
+        <div id="resultState" class="result-placeholder">
+          No prediction yet. Upload image(s) and click predict.
+        </div>
+
+        <div id="resultContent" class="hidden">
+          <div id="classBadge" class="result-badge">-</div>
+          <p class="confidence-line">
+            Confidence: <strong id="topConfidence">0%</strong>
+          </p>
+
+          <div class="bars">
+            <div class="bar-row">
+              <span>Good</span>
+              <div class="bar"><div id="barGood"></div></div>
+              <em id="valGood">0%</em>
+            </div>
+            <div class="bar-row">
+              <span>Average</span>
+              <div class="bar"><div id="barAverage"></div></div>
+              <em id="valAverage">0%</em>
+            </div>
+            <div class="bar-row">
+              <span>Bad</span>
+              <div class="bar"><div id="barBad"></div></div>
+              <em id="valBad">0%</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container reveal">
+      <div class="card">
+        <h3>Batch Prediction Results</h3>
+        <p class="muted">Results for multi-image prediction appear here.</p>
+        <div id="batchResults" class="table-wrap">
+          <p class="muted">No batch prediction executed yet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how container">
+      <h3 class="section-title reveal">How It Works</h3>
+      <div class="steps">
+        <article class="step reveal">
+          <span>1</span>
+          <h4>Upload</h4>
+          <p>Select one or multiple wheat grain images.</p>
+        </article>
+        <article class="step reveal delay-1">
+          <span>2</span>
+          <h4>Analyze</h4>
+          <p>Backend preprocesses image and runs ML inference.</p>
+        </article>
+        <article class="step reveal delay-2">
+          <span>3</span>
+          <h4>Result</h4>
+          <p>Get class label and confidence breakdown instantly.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with HTML, CSS, JavaScript, FastAPI, and TensorFlow</p>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
