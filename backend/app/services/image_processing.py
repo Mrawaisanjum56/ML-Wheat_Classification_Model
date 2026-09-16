@@ -9,12 +9,6 @@ def read_image_bytes_to_pil(file_bytes: bytes) -> Image.Image:
 
 
 def preprocess_for_model(image: Image.Image, size=(224, 224)) -> np.ndarray:
-    """
-    Generic preprocessing:
-    - resize
-    - normalize [0,1]
-    - flatten or keep tensor depending on model
-    """
     image = image.resize(size)
     arr = np.array(image).astype("float32") / 255.0
     return arr

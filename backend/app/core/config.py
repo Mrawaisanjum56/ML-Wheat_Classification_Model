@@ -5,7 +5,7 @@ from typing import List
 class Settings(BaseSettings):
     APP_NAME: str = "WheatVision AI"
     APP_VERSION: str = "1.0.0"
-    MODEL_PATH: str = "app/ml/artifacts/model.pkl"
+    MODEL_PATH: str = "app/ml/artifacts/model.keras"
     MAX_FILE_SIZE_MB: int = 5
     ALLOWED_ORIGINS: List[str] = ["*"]  # set specific domains in production
 
